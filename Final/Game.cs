@@ -6,7 +6,7 @@ public class Game
 {
     public void Start()
     {
-        TextWriter(
+        TextAnimationWriter(
 @"Welcome to Marauders Beach
     A Pirates Game
 
@@ -15,7 +15,7 @@ Press Any Key to Start Game");
         Console.ReadKey();
         Console.Clear();
 
-        TextWriter(
+        TextAnimationWriter(
 @"You awake an a cold beach as the tides roll over your damaged body
 unaware of what happened the night before.
 
@@ -26,9 +26,21 @@ Press Any Key to Continue");
         Console.ReadKey();
         Console.Clear();
 
+        TextAnimationWriter(
+@"When you wake up you have been nursed back to health as you meet the local doctor
+Dr. Sponge Introduces himself and lets you know anytime you have been injured you can
+Come to the Clinic to get healed up this first one is free but from now on it will cost
+a small fee
+
+You leave out to the town center ready look at your new town
+
+Press Any Key to Continue");
+
+        Console.ReadKey();
+        Console.Clear();
     }
 
-    public void TextWriter(string input)
+    public void TextAnimationWriter(string input)
     {
         for (int i = 0; input.Length > i; i++)
         {
