@@ -40,6 +40,11 @@ Press Any Key to Continue");
         Console.Clear();
     }
 
+    void HomeMenu()
+    {
+        System.Console.WriteLine(
+@"Welcome To The Town Hall");
+    }
     public void TextAnimationWriter(string input)
     {
         for (int i = 0; input.Length > i; i++)
