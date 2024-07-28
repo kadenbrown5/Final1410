@@ -10,7 +10,6 @@ public class Game
 {
     public User user = new User();
     bool TooMuch;
-    int Damage;
     int NormalHealth;
     public void Start()
     {
@@ -247,7 +246,9 @@ A) Attack
         enemy.Health -= user.Attack + user.MeleeWeapon.Damage + user.RangedWeapon.Damage - enemy.Defense - enemy.Armor.Armor;
         if(enemy.Health <= 0)
         {
+            System.Console.WriteLine();
             System.Console.WriteLine($"You Have Killed A(n) {enemy.Name} And Earned {enemy.Gold}");
+            System.Console.WriteLine();
             System.Console.WriteLine("Press Any Key To Continue");
             user.Gold += enemy.Gold;
 
