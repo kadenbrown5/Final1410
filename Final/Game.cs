@@ -8,7 +8,7 @@ using System.Threading.Tasks.Dataflow;
 namespace Final;
 public class Game
 {
-    User user = new User();
+    public User user = new User();
     bool TooMuch;
     int Damage;
     int NormalHealth;

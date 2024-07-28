@@ -28,7 +28,7 @@ public class ChestPlate : IItems
 
 public class EmptyItem : IItems
 {
-    public string Name { get; }
+    public string Name { get; } = "";
     public int Damage { get; }
     public int Armor { get; }
 }

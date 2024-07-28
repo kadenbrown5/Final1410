@@ -4,14 +4,15 @@ namespace Final.Test;
 
 public class Tests
 {
+
     Game game = new Game();
-    User user = new User();
+    RustedFlintlock RustedFlintlock = new RustedFlintlock();
     [Test]
     public void TestStore()
     {
-        user.Money = 15;
-        game.Buy(15, new RustedFlintlock(), user.RangedWeapon);
-        if(user.RangedWeapon == new RustedFlintlock())
+        game.user.Gold = 15;
+        game.Buy(15, RustedFlintlock, game.user.RangedWeapon);
+        if(game.user.RangedWeapon == RustedFlintlock)
         Assert.Pass();
         else
         Assert.Fail();
