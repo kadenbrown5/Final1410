@@ -1,5 +1,7 @@
 ﻿using System.Collections;
+using System.ComponentModel.Design;
 using System.Diagnostics;
+using System.Runtime;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks.Dataflow;
 
@@ -8,6 +10,8 @@ public class Game
 {
     User user = new User();
     bool TooMuch;
+    int Damage;
+    int NormalHealth;
     public void Start()
     {
         TextAnimationWriter(
@@ -82,6 +86,9 @@ Where Would You Like To Go To
                 Exit();
                 HomeMenu();
                 break;
+            default:
+                HomeMenu();
+                break;
         }
     }
     void BlacksmithMenu()
@@ -89,7 +96,7 @@ Where Would You Like To Go To
         Console.Clear();
         System.Console.WriteLine(
 @$"Welcome To The Blacksmith
-Gold: {user.Money}
+Gold: {user.Gold}
 
 1) Basic Sword 15 Gold
 0) Go Back
@@ -122,6 +129,9 @@ Gold: {user.Money}
             case ConsoleKey.D0:
                 HomeMenu();
                 break;
+            default:
+                BlacksmithMenu();
+                break;
 
         }
 
@@ -129,10 +139,10 @@ Gold: {user.Money}
 
     void GunsmithMenu()
     {
-                Console.Clear();
+        Console.Clear();
         System.Console.WriteLine(
 @$"Welcome To The Gunsmith
-Gold: {user.Money}
+Gold: {user.Gold}
 
 1) Rusted Flintlock 10 Gold
 0) Go Back
@@ -165,24 +175,142 @@ Gold: {user.Money}
             case ConsoleKey.D0:
                 HomeMenu();
                 break;
-
+            default:
+                GunsmithMenu();
+                break;
         }
     }
     void ShipMasterMenu()
     {
-
+        HomeMenu();
     }
-
     void DockMenu()
     {
+        Console.Clear();
+        System.Console.WriteLine(
+@"Welcome To The Docks
+
+Take Off and Pick Your Fight
+
+1) Bandits
+0) Go Back
+");
+        switch (PlayerInput().Key)
+        {
+            case ConsoleKey.NumPad1:
+            case ConsoleKey.D1:
+                Fight(new Bandit());
+                break;
+            case ConsoleKey.NumPad2:
+            case ConsoleKey.D2:
+
+                break;
+            case ConsoleKey.NumPad3:
+            case ConsoleKey.D3:
+
+                break;
+            case ConsoleKey.NumPad4:
+            case ConsoleKey.D4:
+
+                break;
+            case ConsoleKey.NumPad0:
+            case ConsoleKey.D0:
+                HomeMenu();
+                break;
+            default:
+                DockMenu();
+                break;
+        }
+    }
+
+    public void Fight(ICharacters enemy)
+    {
+        NormalHealth = user.Health;
+        Console.Clear();
+        System.Console.WriteLine(
+@$"Player
+Health:  {user.Health}            
+Attack:  {user.Attack}            
+Defense: {user.Defense}            
+
+{enemy.Name}
+Health:  {enemy.Health}
+Attack:  {enemy.Attack}
+Defense: {enemy.Defense}
+
+A) Attack
+0) Escape
+");
+        switch (PlayerInput().Key)
+        {
+            case ConsoleKey.A:
+        enemy.Health -= user.Attack + user.MeleeWeapon.Damage + user.RangedWeapon.Damage - enemy.Defense - enemy.Armor.Armor;
+        if(enemy.Health <= 0)
+        {
+            System.Console.WriteLine($"You Have Killed A(n) {enemy.Name} And Earned {enemy.Gold}");
+            System.Console.WriteLine("Press Any Key To Continue");
+            user.Gold += enemy.Gold;
+
+            switch(PlayerInput().Key)
+        {
+            default:
+                HomeMenu();
+                break;
+        }
+        }
+        else
+        {
+            user.Health -= enemy.Attack + enemy.MeleeWeapon.Damage + enemy.RangedWeapon.Damage - (user.Armor.Armor + user.Defense);
+            CheckUserDeath();
+        }
+                Fight(enemy);
+                break;
+            case ConsoleKey.NumPad0:
+            case ConsoleKey.D0:
+                HomeMenu();
+                break;
+            default:
+                Fight(enemy);
+                break;
+        }
 
     }
 
+    void CheckUserDeath()
+    {
+        int lostGold = 0;
+        if(user.Health <= 0)
+        {
+            if(user.Gold > 50)
+            {
+                user.Gold -= 50;
+                lostGold = 50;
+            }
+            else if(user.Gold < 50 && user.Gold > 0)
+            {
+                lostGold = user.Gold;
+                user.Gold = 0;
+            }
+            user.Health = NormalHealth;
+            System.Console.WriteLine($"You Have Died And Ended Up At The Clinic And Cost You {lostGold} Gold");
+        switch(PlayerInput().Key)
+        {
+
+            case ConsoleKey.NumPad0:
+            case ConsoleKey.D0:
+                HomeMenu();
+                break;
+            default:
+                HomeMenu();
+                break;
+        }
+        }
+    }
     public void Buy(int cost, IItems item, IItems type)
     {
-        if (user.Money >= cost)
+        if (user.Gold >= cost)
         {
-            user.Money -= cost;
+            user.Gold -= cost;
             if (type == user.MeleeWeapon)
             {
                 user.MeleeWeapon = item;

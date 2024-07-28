@@ -25,3 +25,10 @@ public class ChestPlate : IItems
     public int Damage { get; }
     public int Armor { get; } = 1;
 }
+
+public class EmptyItem : IItems
+{
+    public string Name { get; }
+    public int Damage { get; }
+    public int Armor { get; }
+}
