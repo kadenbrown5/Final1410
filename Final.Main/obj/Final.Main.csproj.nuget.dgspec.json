@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Owner\\OneDrive\\Desktop\\Coding\\C#\\Final1410\\FInal.Main\\Final.Main.csproj": {}
+    "C:\\Users\\Owner\\OneDrive\\Desktop\\Coding\\C#\\Final1410\\Final.Main\\Final.Main.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Owner\\OneDrive\\Desktop\\Coding\\C#\\Final1410\\FInal.Main\\Final.Main.csproj": {
+    "C:\\Users\\Owner\\OneDrive\\Desktop\\Coding\\C#\\Final1410\\Final.Main\\Final.Main.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Owner\\OneDrive\\Desktop\\Coding\\C#\\Final1410\\FInal.Main\\Final.Main.csproj",
+        "projectUniqueName": "C:\\Users\\Owner\\OneDrive\\Desktop\\Coding\\C#\\Final1410\\Final.Main\\Final.Main.csproj",
         "projectName": "Final.Main",
-        "projectPath": "C:\\Users\\Owner\\OneDrive\\Desktop\\Coding\\C#\\Final1410\\FInal.Main\\Final.Main.csproj",
+        "projectPath": "C:\\Users\\Owner\\OneDrive\\Desktop\\Coding\\C#\\Final1410\\Final.Main\\Final.Main.csproj",
         "packagesPath": "C:\\Users\\Owner\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Owner\\OneDrive\\Desktop\\Coding\\C#\\Final1410\\FInal.Main\\obj\\",
+        "outputPath": "C:\\Users\\Owner\\OneDrive\\Desktop\\Coding\\C#\\Final1410\\Final.Main\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Owner\\AppData\\Roaming\\NuGet\\NuGet.Config",
