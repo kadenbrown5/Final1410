@@ -9,7 +9,7 @@ namespace Final;
 public class Game
 {
     public User user = new User();
-    bool TooMuch;
+    TooMuch tooMuch;
     int NormalHealth;
     public void Start()
     {
@@ -57,8 +57,7 @@ Where Would You Like To Go To
 
 1) Blacksmith
 2) Gunsmith
-3) Ship Master
-4) Ship Dock
+3) Ship Dock
 0) Exit Game
 ");
 
@@ -74,10 +73,6 @@ Where Would You Like To Go To
                 break;
             case ConsoleKey.NumPad3:
             case ConsoleKey.D3:
-                ShipMasterMenu();
-                break;
-            case ConsoleKey.NumPad4:
-            case ConsoleKey.D4:
                 DockMenu();
                 break;
             case ConsoleKey.NumPad0:
@@ -100,29 +95,17 @@ Gold: {user.Gold}
 1) Basic Sword 15 Gold
 0) Go Back
 ");
-        if (TooMuch)
+        if (tooMuch == TooMuch.TooMuchTrue)
         {
             System.Console.WriteLine();
             System.Console.WriteLine("Sorry You Don't Have Enough Gold");
-            TooMuch = false;
+            tooMuch = TooMuch.TooMuchFalse;
         }
         switch (PlayerInput().Key)
         {
             case ConsoleKey.NumPad1:
             case ConsoleKey.D1:
-                Buy(15, new Sword(), user.MeleeWeapon);
-                break;
-            case ConsoleKey.NumPad2:
-            case ConsoleKey.D2:
-
-                break;
-            case ConsoleKey.NumPad3:
-            case ConsoleKey.D3:
-
-                break;
-            case ConsoleKey.NumPad4:
-            case ConsoleKey.D4:
-
+                Buy(15, new RustedSword(), user.MeleeWeapon);
                 break;
             case ConsoleKey.NumPad0:
             case ConsoleKey.D0:
@@ -143,32 +126,20 @@ Gold: {user.Gold}
 @$"Welcome To The Gunsmith
 Gold: {user.Gold}
 
-1) Rusted Flintlock 10 Gold
+1) Rusted Flintlock (+1 Ranged Attack) 10 Gold
 0) Go Back
 ");
-        if (TooMuch)
+        if (tooMuch == TooMuch.TooMuchTrue)
         {
             System.Console.WriteLine();
             System.Console.WriteLine("Sorry You Don't Have Enough Gold");
-            TooMuch = false;
+            tooMuch = TooMuch.TooMuchFalse;
         }
         switch (PlayerInput().Key)
         {
             case ConsoleKey.NumPad1:
             case ConsoleKey.D1:
                 Buy(10, new RustedFlintlock(), user.RangedWeapon);
-                break;
-            case ConsoleKey.NumPad2:
-            case ConsoleKey.D2:
-
-                break;
-            case ConsoleKey.NumPad3:
-            case ConsoleKey.D3:
-
-                break;
-            case ConsoleKey.NumPad4:
-            case ConsoleKey.D4:
-
                 break;
             case ConsoleKey.NumPad0:
             case ConsoleKey.D0:
@@ -200,18 +171,6 @@ Take Off and Pick Your Fight
             case ConsoleKey.D1:
                 Fight(new Bandit());
                 break;
-            case ConsoleKey.NumPad2:
-            case ConsoleKey.D2:
-
-                break;
-            case ConsoleKey.NumPad3:
-            case ConsoleKey.D3:
-
-                break;
-            case ConsoleKey.NumPad4:
-            case ConsoleKey.D4:
-
-                break;
             case ConsoleKey.NumPad0:
             case ConsoleKey.D0:
                 HomeMenu();
@@ -228,9 +187,9 @@ Take Off and Pick Your Fight
         Console.Clear();
         System.Console.WriteLine(
 @$"Player
-Health:  {user.Health}            
-Attack:  {user.Attack}            
-Defense: {user.Defense}            
+Health:  {user.Health}
+Attack:  {user.Attack}
+Defense: {user.Defense}
 
 {enemy.Name}
 Health:  {enemy.Health}
@@ -328,7 +287,7 @@ A) Attack
         }
         else
         {
-            TooMuch = true;
+            tooMuch = TooMuch.TooMuchTrue;
             if (type == user.MeleeWeapon || type == user.Armor)
             {
                 BlacksmithMenu();
@@ -381,3 +340,5 @@ Any Other Key) Go Back");
         return input;
     }
 }
+
+enum TooMuch {TooMuchTrue, TooMuchFalse}

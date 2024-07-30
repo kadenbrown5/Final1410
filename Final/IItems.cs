@@ -5,9 +5,9 @@ public interface IItems
     public int Armor { get; }
 }
 
-public class Sword : IItems
+public class RustedSword : IItems
 {
-    public string Name { get; } = "Sword";
+    public string Name { get; } = "Rusted Sword";
     public int Damage { get; } = 1;
     public int Armor { get; }
 }
